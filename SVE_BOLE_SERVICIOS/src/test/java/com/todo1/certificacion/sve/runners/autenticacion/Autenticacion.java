@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
     features = {"src/test/resources/features/autenticacion/autenticacion.feature"}
 )
-public class autenticacion {
+public class Autenticacion {
 }

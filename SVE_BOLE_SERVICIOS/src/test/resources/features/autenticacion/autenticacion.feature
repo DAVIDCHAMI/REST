@@ -1,15 +1,19 @@
 Feature: Autenticacion Sucursal Virtual Empresas BOLE
   Yo como usuario Bancolombia quiero autentincarme en la SVE para realizar transacciones
 
-  Scenario: Login exitoso en SVE
-    Given url 'https://petstore.swagger.io/v2/user/Laura'
-    When method GET
-    Then status 200
+  Background:
+    * url 'https://petstore.swagger.io/'
+    * def path = 'src/test/resources/jsons/'
 
-  Scenario: login
-    Given url 'https://petstore.swagger.io/v2/user'
-    And request {id: 9, username:'Laura', firstName:'villa', lastName:'Tabares', email:'string', password:'string', phone:'', userStatus:1}
+  Scenario: Leer archivo json POST
+    Given path 'v2/user'
+    And request read('file:' + path + 'autenticacion/AutenticacionPost.json')
     When method POST
     Then status 200
-    * def value1 = 9
+    And print response
+
+  Scenario: Login exitoso en SVE
+    Given path 'v2/user/Andres'
+    When method GET
+    Then status 200
     And print response
