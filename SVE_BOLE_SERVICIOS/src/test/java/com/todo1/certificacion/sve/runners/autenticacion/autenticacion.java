@@ -6,8 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Karate.class)
 @KarateOptions(
-    features = {"src/test/resources/features"},
-        tags = "@POST"
+    features = {"src/test/resources/features/autenticacion/autenticacion.feature"}
 )
 public class autenticacion {
 }
