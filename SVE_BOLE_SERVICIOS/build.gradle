@@ -1,0 +1,18 @@
+group 'com.todo1.certificacion.sve'
+description 'Automatización servicios Sucursal Virtual Empresas'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'com.intuit.karate:karate-junit4:0.9.4'
+    testCompile 'com.intuit.karate:karate-apache:0.9.4'
+}
+
+gradle.startParameter.continueOnFailure = true
