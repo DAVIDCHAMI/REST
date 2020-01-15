@@ -9,7 +9,6 @@ Feature:
     And header CORRELATIONID = (correnlationId)
     When method GET
     Then status 200
-    * def sessionIdStartFlow = response
 
 
   @getParams
