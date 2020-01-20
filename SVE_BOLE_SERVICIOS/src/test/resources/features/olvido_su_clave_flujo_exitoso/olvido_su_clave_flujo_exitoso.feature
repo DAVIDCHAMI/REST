@@ -27,6 +27,15 @@ Feature:
   }
   """
     And call read('../bancoServicios/banco_servicios.feature@getParams') jsonParamtroGetParams
+    * def jsonParametroEncryptedPassword =
+    """
+    {
+      url: 'http://192.168.103.61:9280/',
+      path: 'proxi/CypherCreds.jsp',
+    }
+    """
+    And def responseGetEncryptedPassword = call read('../bancoServicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
+    * print responseGetEncryptedPassword.response
     * def jsonParamtroValidate =
     """
     {
@@ -54,4 +63,13 @@ Feature:
     And header CHANNEL = '003'
     And request jsonRequetsPost
     When method POST
+    * def encryptedPassword = Java.type('com.todo1.certificacion.sve.main.mainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
+    Given url (urlPath)
+    And path 'user/key/set'
+    And header CORRELATIONID = (correnlationId)
+    And header SESSIONID = getSessionIdStartFlow.response.header.sessionId
+    And header Content-Type = 'application/json'
+    And header CHANNEL = '003'
+    And request encryptedPassword
+    When method PUT
     Then status 200

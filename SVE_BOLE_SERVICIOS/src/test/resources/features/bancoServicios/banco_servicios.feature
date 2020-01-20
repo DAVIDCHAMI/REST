@@ -32,3 +32,10 @@ Feature:
     And request jsonRequetsPost
     When method POST
     Then status 200
+
+    @encryptedNewPassword
+    Scenario: Encriptacion de contraseña
+    Given url (url)
+    And path (path)
+    When method GET
+    Then status 200

@@ -9,7 +9,7 @@ Feature:
 
 
   Scenario: Verificar Captcha
-    * def jsonParamtroStartFlow =
+    * def jsonParametroStartFlow =
     """
     {
     url: #(urlPath),
@@ -17,8 +17,8 @@ Feature:
     correnlationId: #(correnlationId)
     }
     """
-    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParamtroStartFlow
-    * def jsonParamtroGetParams =
+    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
+    * def jsonParametroGetParams =
     """
   {
   url: #(urlPath),
@@ -27,8 +27,8 @@ Feature:
   correnlationId: #(correnlationId)
   }
   """
-    And call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParamtroGetParams
-    * def jsonParamtroValidate =
+    And def responseGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
+    * def jsonParametroValidate =
     """
     {
      jsonPath: '../../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
@@ -38,5 +38,5 @@ Feature:
      correnlationId: '73284923'
      }
     """
-    When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParamtroValidate
+    When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
     Then match errorCode.response.header.errorCode == 'MA0021'
