@@ -6,7 +6,7 @@ Feature:
   Scenario: StartFlow
     Given url (url)
     And path (path)
-    And header CORRELATIONID = (correnlationId)
+    And header CORRELATIONID = (correlationId)
     When method GET
     Then status 200
 
@@ -16,7 +16,7 @@ Feature:
     Given url (url)
     And path (path)
     And header SESSIONID = (sessionIdStartFlow)
-    And header CORRELATIONID = (correnlationId)
+    And header CORRELATIONID = (correlationId)
     When method GET
     Then status 200
 
@@ -26,7 +26,7 @@ Feature:
     Given url (url)
     And path (path)
     And header SESSIONID = (sessionIdStartFlow)
-    And header CORRELATIONID = (correnlationId)
+    And header CORRELATIONID = (correlationId)
     And header Content-Type = 'application/json'
     And header CHANNEL = '003'
     And request jsonRequetsPost
