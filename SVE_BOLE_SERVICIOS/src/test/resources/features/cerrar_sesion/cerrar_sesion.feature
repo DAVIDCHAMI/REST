@@ -69,5 +69,29 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     """
     And request jsonPass
     When method post
+    * def responseValidarContrasena = response
+    * print responseValidarContrasena.header.errorCode
     Then status 200
-    
+    And responseValidarContrasena.header.errorCode = 'MA0007'
+    Given url (urlPath) + 'risk/authorize'
+    And header correlationId = correlationId
+    And header sessionId = getSessionIdStartFlow.response.header.sessionId
+    * def jsonAntiFraude =
+    """
+    {
+    }
+    """
+    And request jsonAntiFraude
+    When method post
+    Then status 200
+    * def responseAntiFrause = response
+    * print responseAntiFrause.header.errorCode
+    And responseAntiFrause.header.errorCode = 'MA0204'
+    Given url (urlPath) + 'authentication/initialize'
+    And header correlationId = correlationId
+    And header sessionId = getSessionIdStartFlow.response.header.sessionId
+    When method get
+    Then status 200
+    * def responseInitialize = response
+    * print responseInitialize.header.errorCode
+    And responseInitialize.header.errorCode = 'END'
