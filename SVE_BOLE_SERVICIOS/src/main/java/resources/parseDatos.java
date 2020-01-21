@@ -3,7 +3,7 @@ package resources;
 
 import net.minidev.json.JSONArray;
 
-public class parseDatos {
+public class ParseDatos {
 
     public static String devolverContrasena(String encriptada) {
         return encriptada.replaceAll("\n", "");
