@@ -1,5 +1,4 @@
-package com.todo1.certificacion.sve.main;
-
+package resources;
 
 import com.google.gson.Gson;
 

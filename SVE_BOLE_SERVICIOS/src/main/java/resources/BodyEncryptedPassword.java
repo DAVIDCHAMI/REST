@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.main;
+package resources;
 
 public class BodyEncryptedPassword {
 

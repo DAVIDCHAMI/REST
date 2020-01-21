@@ -14,7 +14,7 @@ Feature:
     {
     url: #(urlPath),
     path: 'authentication/startFlow',
-    correnlationId: #(correnlationId)
+    correlationId: #(correnlationId)
     }
     """
     Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
@@ -24,7 +24,7 @@ Feature:
   url: #(urlPath),
   path: 'authentication/getparams',
   sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
-  correnlationId: #(correnlationId)
+  correlationId: #(correnlationId)
   }
   """
     And def responseGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
@@ -35,7 +35,7 @@ Feature:
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
-     correnlationId: '73284923'
+     correlationId: '73284923'
      }
     """
     When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate

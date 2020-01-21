@@ -1,6 +1,6 @@
 Feature:
   Yo como usuario
-  Quiero poder validar el captcha
+  Quiero poder recuperar mi clave
 
 
   Background:
@@ -13,42 +13,36 @@ Feature:
     {
     url: #(urlPath),
     path: 'authentication/startFlow',
-    correnlationId: #(correnlationId)
+    correlationId: #(correnlationId)
     }
     """
-    Given def getSessionIdStartFlow = call read('../bancoServicios/banco_servicios.feature@startFlow') jsonParamtroStartFlow
+    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParamtroStartFlow
     * def jsonParamtroGetParams =
     """
   {
   url: #(urlPath),
   path: 'authentication/getparams',
   sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
-  correnlationId: #(correnlationId)
+  correlationId: #(correnlationId)
   }
   """
-    And call read('../bancoServicios/banco_servicios.feature@getParams') jsonParamtroGetParams
-    * def jsonParametroEncryptedPassword =
-    """
-    {
-      url: 'http://192.168.103.61:9280/',
-      path: 'proxi/CypherCreds.jsp',
-    }
-    """
-    And def responseGetEncryptedPassword = call read('../bancoServicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
-    * print responseGetEncryptedPassword.response
+    And def responseGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParamtroGetParams
+    * def array = responseGetParams.response.data.extras
+    * print responseGetParams.response.data.extras
+    * def salt = Java.type('resources.parseDatos').devolverSALT(array)
+    * print salt
     * def jsonParamtroValidate =
     """
     {
-     jsonPath: '../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
+     jsonPath: '../../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
-     correnlationId: '73284923'
+     correlationId: '73284923'
      }
     """
-    When def errorCode = call read('../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParamtroValidate
-    Then match errorCode.response.header.errorCode == 'MA0021'
-    * def jsonRequetsPost = read('../../jsons/olvido_clave/OlvidoClavePost.json')
+    When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParamtroValidate
+    * def jsonRequetsPost = read('../../../jsons/olvido_clave/OlvidoClavePost.json')
     Given url (urlPath)
     And path 'password/regenerate/info'
     And header CORRELATIONID = '73284923'
@@ -63,7 +57,28 @@ Feature:
     And header CHANNEL = '003'
     And request jsonRequetsPost
     When method POST
-    * def encryptedPassword = Java.type('com.todo1.certificacion.sve.main.mainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
+
+
+
+
+
+    * def jsonParametroEncryptedPassword =
+    """
+    {
+      url: 'http://192.168.103.61:9280/',
+      path: 'proxi/CypherCreds.jsp',
+    }
+    """
+    And def responseGetEncryptedPassword = call read('../../bancoServicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
+    * print responseGetEncryptedPassword.response
+
+
+
+
+
+    Then match errorCode.response.header.errorCode == 'MA0021'
+
+    * def encryptedPassword = Java.type('java.mainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
     Given url (urlPath)
     And path 'user/key/set'
     And header CORRELATIONID = (correnlationId)
