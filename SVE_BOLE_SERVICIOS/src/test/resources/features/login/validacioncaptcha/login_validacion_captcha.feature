@@ -7,7 +7,7 @@ Feature:
     * def correnlationId = '32432432'
     * def urlPath = 'http://192.168.106.49:11080/t1-psf-apistore-mua/rest/v1.0/EFRESETPWD/security/'
 
-  Scenario: Olvido su clave - flujo exitoso
+  Scenario: Login - Validacion de Captcha
     * def jsonParamtroStartFlow =
     """
     {
