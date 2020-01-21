@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.runners.olvido_su_clave.flujo_exitoso;
+package com.todo1.certificacion.sve.runners.olvidoclave;
 
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.junit4.Karate;

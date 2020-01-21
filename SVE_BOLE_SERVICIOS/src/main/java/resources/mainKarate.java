@@ -2,7 +2,7 @@ package resources;
 
 import com.google.gson.Gson;
 
-public class mainKarate {
+public class MainKarate {
 
     public static String replaceAllKarate(String value) {
         String newkey = value.replaceAll("\n", "");

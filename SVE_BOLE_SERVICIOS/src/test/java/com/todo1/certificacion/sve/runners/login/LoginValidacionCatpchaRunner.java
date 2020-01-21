@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.runners.login.validacion_captcha;
+package com.todo1.certificacion.sve.runners.login;
 
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.junit4.Karate;

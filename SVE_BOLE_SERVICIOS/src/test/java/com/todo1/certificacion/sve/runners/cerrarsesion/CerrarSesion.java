@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.runners.cerrar_sesion;
+package com.todo1.certificacion.sve.runners.cerrarsesion;
 
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.junit4.Karate;
