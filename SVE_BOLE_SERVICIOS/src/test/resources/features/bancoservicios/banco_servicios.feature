@@ -1,6 +1,5 @@
 Feature:
-  Yo como usuario
-  Quiero poder validar el captcha
+  features de funcionalidades generales reusables
 
   @startFlow
   Scenario: StartFlow
@@ -9,7 +8,6 @@ Feature:
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     When method GET
-
 
   @getParams
   Scenario: GetParams
@@ -63,8 +61,14 @@ Feature:
     And request jsonRequetsPost
     When method POST
 
-    @encryptedNewPassword
-    Scenario: Encriptacion de contraseña
+  @encryptedNewPassword
+  Scenario: Encriptacion de contraseña
     Given url (url)
     And path (path)
     When method GET
+
+  @cerrarSesion
+  Scenario: Cerrar sesion
+    Given url (url)
+    And path (path)
+    When method DELETE

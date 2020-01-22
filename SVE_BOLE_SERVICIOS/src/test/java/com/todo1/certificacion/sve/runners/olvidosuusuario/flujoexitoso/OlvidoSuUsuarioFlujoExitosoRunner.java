@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.runners.olvido_su_usuario.flujo_exitoso;
+package com.todo1.certificacion.sve.runners.olvidosuusuario.flujoexitoso;
 
 
 import com.intuit.karate.KarateOptions;
