@@ -55,26 +55,9 @@ Feature:
     And header CHANNEL = '003'
     And request jsonRequetsPost
     When method POST
-
-
-
-
-
-    * def jsonParametroEncryptedPassword =
-    """
-    {
-      url: 'http://192.168.103.61:9280/',
-      path: 'proxi/CypherCreds.jsp',
-    }
-    """
-    And def responseGetEncryptedPassword = call read('../../bancoservicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
-
-
-
-
-    Then match errorCode.response.header.errorCode == 'MA0021'
-
-    * def encryptedPassword = Java.type('java.MainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
+    Given url 'http://192.168.103.61:9280/proxi/CypherCreds.jsp?salt='+salt+'&password=Todo1234'
+    When method GET
+    * def encryptedPassword = Java.type('resources.MainKarate').replaceAllKarate(response)
     Given url (urlPath)
     And path 'user/key/set'
     And header CORRELATIONID = (correnlationId)
