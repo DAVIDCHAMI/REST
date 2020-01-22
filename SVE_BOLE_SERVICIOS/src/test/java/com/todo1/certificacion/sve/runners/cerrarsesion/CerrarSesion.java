@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Karate.class)
 @KarateOptions(
-        features = {"src/test/resources/features/cerrarsesion/cerrar_sesion.feature"} )
+        features = {"src/test/resources/features/cerrar_sesion/cerrar_sesion.feature"} )
 
-public class CerrarSesionRunner {
+public class CerrarSesion {
 }
