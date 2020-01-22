@@ -16,7 +16,7 @@ Feature:
     correlationId: #(correnlationId)
     }
     """
-    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParamtroStartFlow
+    Given def getSessionIdStartFlow = call read('../../bancoservicios/banco_servicios.feature@startFlow') jsonParamtroStartFlow
     * def jsonParamtroGetParams =
     """
   {
@@ -26,23 +26,21 @@ Feature:
   correlationId: #(correnlationId)
   }
   """
-    And def responseGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParamtroGetParams
+    And def responseGetParams = call read('../../bancoservicios/banco_servicios.feature@getParams') jsonParamtroGetParams
     * def array = responseGetParams.response.data.extras
-    * print responseGetParams.response.data.extras
-    * def salt = Java.type('resources.parseDatos').devolverSALT(array)
-    * print salt
+    * def salt = Java.type('resources.ParseDatos').devolverSALT(array)
     * def jsonParamtroValidate =
     """
     {
-     jsonPath: '../../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
+     jsonPath: '../../../jsons/validacioncaptcha/ValidacionCaptchaPost.json',
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
      correlationId: '73284923'
      }
     """
-    When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParamtroValidate
-    * def jsonRequetsPost = read('../../../jsons/olvido_clave/OlvidoClavePost.json')
+    When def errorCode = call read('../../bancoservicios/banco_servicios.feature@validacionCaptcha') jsonParamtroValidate
+    * def jsonRequetsPost = read('../../../jsons/olvidoclave/OlvidoClavePost.json')
     Given url (urlPath)
     And path 'password/regenerate/info'
     And header CORRELATIONID = '73284923'
@@ -69,16 +67,14 @@ Feature:
       path: 'proxi/CypherCreds.jsp',
     }
     """
-    And def responseGetEncryptedPassword = call read('../../bancoServicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
-    * print responseGetEncryptedPassword.response
-
+    And def responseGetEncryptedPassword = call read('../../bancoservicios/banco_servicios.feature@encryptedNewPassword') jsonParametroEncryptedPassword
 
 
 
 
     Then match errorCode.response.header.errorCode == 'MA0021'
 
-    * def encryptedPassword = Java.type('java.mainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
+    * def encryptedPassword = Java.type('java.MainKarate').replaceAllKarate(responseGetEncryptedPassword.response)
     Given url (urlPath)
     And path 'user/key/set'
     And header CORRELATIONID = (correnlationId)

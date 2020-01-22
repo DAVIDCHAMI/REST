@@ -16,16 +16,16 @@ Feature:
   correlationId:  #(correnlationId)
   }
   """
-    Given def responseGetParams = call read('../../bancoServicios/banco_servicios.feature@getParamsOlvidoUsuario') jsonParametroGetParams
+    Given def responseGetParams = call read('../../bancoservicios/banco_servicios.feature@getParamsOlvidoUsuario') jsonParametroGetParams
     * def jsonParametroValidate =
     """
     {
-     jsonPath: '../../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
+     jsonPath: '../../../jsons/validacioncaptcha/ValidacionCaptchaPost.json',
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(responseGetParams.response.header.sessionId),
      correlationId: '73284923'
      }
     """
-    When def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptchaOlvidoUsuario') jsonParametroValidate
+    When def errorCode = call read('../../bancoservicios/banco_servicios.feature@validacionCaptchaOlvidoUsuario') jsonParametroValidate
     Then match errorCode.response.header.errorCode == 'MA0015'
