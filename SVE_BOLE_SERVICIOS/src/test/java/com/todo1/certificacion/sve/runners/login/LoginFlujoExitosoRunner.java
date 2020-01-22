@@ -1,4 +1,4 @@
-package com.todo1.certificacion.sve.runners.login.flujoexitoso;
+package com.todo1.certificacion.sve.runners.login;
 
 import com.intuit.karate.KarateOptions;
 import com.intuit.karate.junit4.Karate;
