@@ -26,18 +26,18 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     And def datosGetParams = call read('../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
     * def array = datosGetParams.response.data.extras
     * print array
-    * def salt = Java.type('resources.parseDatos').devolverSALT(array)
+    * def salt = Java.type('resources.ParseDatos').devolverSALT(array)
     * def jsonParametroValidate =
     """
     {
-     jsonPath: '../../jsons/validacion_captcha/ValidacionCaptchaPost.json',
+     jsonPath: '../../jsons/validacioncaptcha/ValidacionCaptchaPost.json',
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
      correlationId: #(correlationId)
      }
     """
-    And def errorCode = call read('../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
+    And def errorCode = call read('../bancoservicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
     * def jsonParametroAutenUsuario =
     """
     {
@@ -51,13 +51,13 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     Given url (urlPath) + 'login/business/info'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
-    And request read('../../jsons/validar_usuario/ValidarUsuarioPost.json')
+    And request read('../../jsons/validarusuario/ValidarUsuarioPost.json')
     When method post
     Then status 200
     * print response
     Given url 'http://192.168.103.61:9280/proxi/CypherCreds.jsp?salt='+salt+'&password=Todo1234'
     When method get
-    * def contrasenaOk = Java.type('resources.parseDatos').devolverContrasena(response)
+    * def contrasenaOk = Java.type('resources.ParseDatos').devolverContrasena(response)
     Given url (urlPath) + 'authentication/firstkey'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
