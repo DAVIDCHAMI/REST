@@ -13,7 +13,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     correlationId: #(correlationId)
     }
     """
-    Given def getSessionIdStartFlow = call read('../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
+    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
     * def jsonParametroGetParams =
     """
     {
@@ -23,25 +23,24 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     correlationId: #(correlationId)
     }
     """
-    And def datosGetParams = call read('../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
-    * def array = datosGetParams.response.data.extras
-    * print array
-    * def salt = Java.type('resources.ParseDatos').devolverSALT(array)
+    And def datosGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
+    * def collectionDatos = datosGetParams.response.data.extras
+    * def salt = Java.type('resources.ParseDatos').devolverSALT(collectionDatos)
     * def jsonParametroValidate =
     """
     {
-     jsonPath: '../../jsons/validacioncaptcha/ValidacionCaptchaPost.json',
+     jsonPath: '../../../jsons/validacioncaptcha/ValidacionCaptchaPost.json',
      url: #(urlPath),
      path: 'user/captcha/validate',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
      correlationId: #(correlationId)
      }
     """
-    And def errorCode = call read('../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
+#    And def errorCode = call read('../../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
     * def jsonParametroAutenUsuario =
     """
     {
-     jsonPath: '../../jsons/validarusuario/ValidarUsuarioPost.json',
+     jsonPath: '../../../jsons/validarusuario/ValidarUsuarioPost.json',
      url: #(urlPath),
      path: 'login/business/info',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
@@ -51,10 +50,9 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     Given url (urlPath) + 'login/business/info'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
-    And request read('../../jsons/validarusuario/ValidarUsuarioPost.json')
+    And request read('../../../jsons/validarusuario/ValidarUsuarioPost.json')
     When method post
     Then status 200
-    * print response
     Given url 'http://192.168.103.61:9280/proxi/CypherCreds.jsp?salt='+salt+'&password=Todo1234'
     When method get
     * def contrasenaOk = Java.type('resources.ParseDatos').devolverContrasena(response)
@@ -70,7 +68,6 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     And request jsonPass
     When method post
     * def responseValidarContrasena = response
-    * print responseValidarContrasena.header.errorCode
     Then status 200
     And responseValidarContrasena.header.errorCode = 'MA0007'
     Given url (urlPath) + 'risk/authorize'
@@ -85,7 +82,6 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     When method post
     Then status 200
     * def responseAntiFrause = response
-    * print responseAntiFrause.header.errorCode
     And responseAntiFrause.header.errorCode = 'MA0204'
     Given url (urlPath) + 'authentication/initialize'
     And header correlationId = correlationId
@@ -93,5 +89,4 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     When method get
     Then status 200
     * def responseInitialize = response
-    * print responseInitialize.header.errorCode
     And responseInitialize.header.errorCode = 'END'

@@ -36,7 +36,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
      correlationId: #(correlationId)
      }
     """
-    And def errorCode = call read('../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
+#    And def errorCode = call read('../bancoServicios/banco_servicios.feature@validacionCaptcha') jsonParametroValidate
     * def jsonParametroAutenUsuario =
     """
     {
