@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/cerrarsesion/cerrar_sesion.feature"} )
 
-public class CerrarSesion {
+public class CerrarSesionRunner {
 }
