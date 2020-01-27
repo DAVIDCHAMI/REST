@@ -72,7 +72,6 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     When method post
     * def responseValidarContrasena = response
     Then status 200
-    * print response
     And match responseValidarContrasena.header.errorCode == '<errorContrasena>'
 
     Examples:
