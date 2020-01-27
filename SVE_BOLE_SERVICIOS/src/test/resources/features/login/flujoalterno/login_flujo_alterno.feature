@@ -51,7 +51,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     Given url (urlPath) + 'login/business/info'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
-    And request read('../../../jsons/validarusuario/<json>.json')
+    And request read('../../../jsons/validarusuario/<pathJson>.json')
     When method post
     * def responseUsuario = response
     Then status 200
@@ -76,8 +76,8 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     And match responseValidarContrasena.header.errorCode == '<errorContrasena>'
 
     Examples:
-      | escenario                       | contrasena | json                                    | errorUsuario | errorContrasena
+      | escenario                       | contrasena | pathJson                                | errorUsuario | errorContrasena |
       | Usuario no existe               | Todo1234   | ValidarUsuarioNoExistePost              | MA0013       | ERR001          |
-      | Usuario bloqueado               | Todo1234   | ValidarUsuarioBloqueadoPost             | ERR002       | ERR002          |
+      | Usuario bloqueado               | Todo1234   | ValidarUsuarioBloqueadoPost             | ERR002       | ERR001          |
       | Usuario clave inclorrecta       | Todo123456 | ValidarUsuarioPost                      | MA0013       | ERR001          |
       | Usuario 1 intento para bloquear | Todo1234   | ValidarUsuarioUltimoIntentoBloquearPost | MA0013       | ERR1008         |
