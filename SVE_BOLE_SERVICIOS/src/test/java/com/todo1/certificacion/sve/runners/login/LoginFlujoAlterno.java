@@ -9,5 +9,5 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources/features/login/flujoalterno/login_flujo_alterno.feature"}
 )
 
-public class LoginFlujoAlternoRunner {
+public class LoginFlujoAlterno {
 }

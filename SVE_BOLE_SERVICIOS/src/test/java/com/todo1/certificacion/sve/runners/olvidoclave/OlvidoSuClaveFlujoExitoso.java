@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/olvidoclave/flujoexitoso/olvido_su_clave_flujo_exitoso.feature"}
 )
-public class OlvidoSuClaveFlujoExitosoRunner {
+public class OlvidoSuClaveFlujoExitoso {
 }

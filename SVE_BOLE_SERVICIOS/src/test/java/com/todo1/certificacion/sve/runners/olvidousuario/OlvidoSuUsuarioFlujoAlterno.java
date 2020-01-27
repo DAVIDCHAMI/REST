@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/olvidousuario/flujoalterno/olvido_su_usuario_flujo_alterno.feature"}
 )
-public class OlvidoSuUsuarioFlujoAlternoRunner {
+public class OlvidoSuUsuarioFlujoAlterno {
 }

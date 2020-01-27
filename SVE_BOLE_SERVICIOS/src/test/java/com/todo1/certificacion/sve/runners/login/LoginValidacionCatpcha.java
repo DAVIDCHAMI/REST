@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/login/validacioncaptcha/login_validacion_captcha.feature"}
 )
-public class LoginValidacionCatpchaRunner {
+public class LoginValidacionCatpcha {
 }

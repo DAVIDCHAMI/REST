@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Karate.class)
 @KarateOptions(
-        features = {"src/test/resources/features/olvidousuario/flujoexitoso/olvido_su_usuario_flujo_exitoso.feature"}
+        features = {"src/test/resources/features/olvidousuario/validacioncaptcha/olvido_su_usuario_validacion_captcha.feature"}
 )
-public class OlvidoSuUsuarioFlujoExitosoRunner {
+public class OlvidoUsuarioValidacionCaptcha {
 }
