@@ -63,8 +63,16 @@ Feature:
     And request jsonRequetsPost
     When method POST
 
-    @encryptedNewPassword
-    Scenario: Encriptacion de contraseña
+  @encryptedNewPassword
+  Scenario: Encriptacion de contraseña
     Given url (url)
     And path (path)
     When method GET
+
+  @cerrarSesion
+  Scenario: Cerrar sesion
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionIdStartFlow)
+    And header CORRELATIONID = (correlationId)
+    When method DELETE

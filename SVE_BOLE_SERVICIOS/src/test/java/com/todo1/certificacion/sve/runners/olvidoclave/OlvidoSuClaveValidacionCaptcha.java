@@ -8,5 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/olvidoclave/validacioncaptcha/olvido_su_clave_validacion_captcha.feature"}
 )
-public class OlvidoSuClaveValidacionCaptchaRunner {
+public class OlvidoSuClaveValidacionCaptcha {
 }
