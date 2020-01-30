@@ -1,0 +1,134 @@
+[
+  {
+    "id": "PA",
+    "name": "PANAMÁ",
+    "homeCountry": true,
+    "statesAvailable": false,
+    "allowNewStates": true,
+    "other": false,
+    "frequent": true,
+    "documentTypes": [
+      {
+        "code": "CC",
+        "description": "Cédula de ciudadanía"
+      },
+      {
+        "code": "CE",
+        "description": "Cédula de extranjería"
+      },
+      {
+        "code": "IENNRC",
+        "description": "ID Extranjero Natural no Residente en Colombia"
+      },
+      {
+        "code": "RC",
+        "description": "Registro civil"
+      },
+      {
+        "code": "TI",
+        "description": "Tarjeta de identidad"
+      },
+      {
+        "code": "p",
+        "description": "Pasaporte"
+      }
+    ],
+    "countryPhoneCodes": "507"
+  },
+  {
+    "id": "PR",
+    "name": "PUERTO RICO",
+    "homeCountry": true,
+    "statesAvailable": false,
+    "allowNewStates": true,
+    "other": false,
+    "frequent": true,
+    "documentTypes": [
+      {
+        "code": "CC",
+        "description": "Cédula de ciudadanía"
+      },
+      {
+        "code": "CE",
+        "description": "Cédula de extranjería"
+      },
+      {
+        "code": "IENNRC",
+        "description": "ID Extranjero Natural no Residente en Colombia"
+      },
+      {
+        "code": "RC",
+        "description": "Registro civil"
+      },
+      {
+        "code": "TI",
+        "description": "Tarjeta de identidad"
+      },
+      {
+        "code": "p",
+        "description": "Pasaporte"
+      }
+    ],
+    "countryPhoneCodes": "1939"
+  },
+  {
+    "id": "CO",
+    "name": "COLOMBIA",
+    "homeCountry": true,
+    "statesAvailable": false,
+    "allowNewStates": true,
+    "other": false,
+    "frequent": true,
+    "documentTypes": [
+      {
+        "code": "CC",
+        "description": "Cédula de ciudadanía"
+      },
+      {
+        "code": "CE",
+        "description": "Cédula de extranjería"
+      },
+      {
+        "code": "P",
+        "description": "Pasaporte"
+      }
+    ],
+    "countryPhoneCodes": "57"
+  },
+  {
+    "id": "KY",
+    "name": "CAYMAN",
+    "homeCountry": true,
+    "statesAvailable": false,
+    "allowNewStates": true,
+    "other": false,
+    "frequent": true,
+    "documentTypes": [
+      {
+        "code": "CC",
+        "description": "Cédula de ciudadanía"
+      },
+      {
+        "code": "CE",
+        "description": "Cédula de extranjería"
+      },
+      {
+        "code": "IENNRC",
+        "description": "ID Extranjero Natural no Residente en Colombia"
+      },
+      {
+        "code": "RC",
+        "description": "Registro civil"
+      },
+      {
+        "code": "TI",
+        "description": "Tarjeta de identidad"
+      },
+      {
+        "code": "p",
+        "description": "Pasaporte"
+      }
+    ],
+    "countryPhoneCodes": "1345"
+  }
+]

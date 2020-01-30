@@ -18,4 +18,7 @@ public class ParseDatos {
         });
         return salt[0];
     }
+
+    private ParseDatos() {
+    }
 }
