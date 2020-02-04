@@ -18,5 +18,5 @@ Feature:
     Then status 200
     And match responsePersonas.errorCode == '0000'
     * def datosSegPersonasServicios = response.data
-    * def datosSegPersonasEsperado = read('../../jsons/validarMaestros/maestroSegmentoPersonas.json')
+    * def datosSegPersonasEsperado = read('../../jsons/validarmaestros/maestroSegmentoPersonas.json')
     And match response.data == datosSegPersonasEsperado
