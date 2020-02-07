@@ -24,8 +24,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     }
     """
     And def datosGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
-    * def collectionDatos = datosGetParams.response.data.extras
-    * def salt = Java.type('resources.ParseDatos').devolverSALT(collectionDatos)
+    * def salt = datosGetParams.response.data.extras[1].value
     * def jsonParametroValidate =
     """
     {
