@@ -27,7 +27,7 @@ Feature:
      correlationId: #(correlationId)
      }
     """
-#    When def responseCaptcha = call read('../../bancoservicios/banco_servicios.feature@validacionCaptchaOlvidoUsuario') jsonParametroValidate
+    When def responseCaptcha = call read('../../bancoservicios/banco_servicios.feature@validacionCaptchaOlvidoUsuario') jsonParametroValidate
     Given url urlPath + '/enroll/business/user/info'
     And header correlationId = correlationId
     And header sessionId = sessionId
@@ -40,3 +40,17 @@ Feature:
     And match responseNuevoUsuario.header.errorMsg contains 'validó exitosamente'
     And match responseNuevoUsuario.data.extras[0].name == 'firstName'
     And match responseNuevoUsuario.data.extras[1].name == 'lastName'
+    * def jsonEnviarOTP =
+    """
+    {
+    }
+    """
+    Given url urlPath + 'otp/generate'
+    And header correlationId = correlationId
+    And header sessionId = sessionId
+    When request jsonEnviarOTP
+    And method POST
+    Then status 200
+    * def responseEnviarOTP = response
+    And match responseEnviarOTP.header.errorCode == 'MA0002'
+    And match responseEnviarOTP.header.errorMsg contains 'ODA enviado'
