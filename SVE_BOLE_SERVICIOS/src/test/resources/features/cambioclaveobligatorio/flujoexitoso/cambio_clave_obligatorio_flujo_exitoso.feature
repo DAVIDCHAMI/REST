@@ -54,9 +54,6 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     When method get
     Then status 200
     * def contrasenaEncriptada = Java.type('resources.ParseDatos').devolverContrasena(response)
-
-
-
     * def jsonContrasenaEncriptada =
     """
   {
@@ -109,8 +106,6 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     """
     And def responseInitialize = call read('../../bancoServicios/banco_servicios.feature@initialize') jsonInitialize
     And match responseInitialize.response.header.errorCode == '<errorInitialize>'
-
-
     Examples:
-      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize | 
+      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize |
       | Todo1234   | MA0013       | MA0100          | Todo1235        | MA0204           |   END           |
