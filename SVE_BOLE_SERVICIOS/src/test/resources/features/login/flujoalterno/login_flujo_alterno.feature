@@ -4,7 +4,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     * def correlationId = '32432432'
     * def urlPath = 'http://192.168.106.48:10280/t1-psf-apistore-mua/rest/v1.0/EFLOGIN/security/'
 
-  @UsuarioNoExioste
+  @UsuarioNoExiste
   Scenario Outline: Autenticacion flujo alterno (<escenario>)
     * def jsonParametroStartFlow =
     """
