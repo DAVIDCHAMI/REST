@@ -107,5 +107,5 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
 #    And def responseInitialize = call read('../../bancoServicios/banco_servicios.feature@initialize') jsonInitialize
 #    And match responseInitialize.response.header.errorCode == '<errorInitialize>'
     Examples:
-      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize |
-      | Todo1234   | MA0013       | MA0100          | Todo12345       | ERR999           |   END           |
+      | contrasena | errorUsuario | errorContrasena | nuevaContrasena| errorCambioClave | errorInitialize |
+      | Todo1234   | MA0013       | MA0100          | Todo1234       | ERR999           |   END           |

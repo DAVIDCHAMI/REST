@@ -87,6 +87,17 @@ Feature:
     When method PUT
     Then status 200
 
+  @cambioObligatorioClaveflujoalterno
+  Scenario: CambioObligatorioClave
+    * def jsonRequetsPost = (jsonPath)
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    And request jsonRequetsPost
+    When method PUT
+    Then status 400
+
   @antiFraude
   Scenario: Autorizar Antifraude
     * def jsonRequetsPost = read((jsonPath))
