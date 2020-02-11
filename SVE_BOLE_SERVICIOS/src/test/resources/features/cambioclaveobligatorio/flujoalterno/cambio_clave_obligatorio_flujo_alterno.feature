@@ -5,7 +5,7 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     * def urlPath = 'http://192.168.106.49:11080/t1-psf-apistore-mua/rest/v1.0/EFLOGIN/security/'
 
   @CambioClaveObligatorioAlterno
-  Scenario Outline: Autenticacion
+  Scenario Outline: Cambio Clave Flujos Alternos
     * def jsonParametroStartFlow =
     """
     {
@@ -95,17 +95,8 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     """
     And def responseCambioClave = call read('../../bancoServicios/banco_servicios.feature@cambioObligatorioClaveflujoalterno') jsonCambioObligatorioContrasena
     And match responseCambioClave.response.header.errorCode == '<errorCambioClave>'
-#    * def jsonInitialize =
-#     """
-#    {
-#     url: #(urlPath),
-#     path: 'authentication/initialize',
-#     sessionId: #(sessionId),
-#     correlationId: #(correlationId)
-#    }
-#    """
-#    And def responseInitialize = call read('../../bancoServicios/banco_servicios.feature@initialize') jsonInitialize
-#    And match responseInitialize.response.header.errorCode == '<errorInitialize>'
+
     Examples:
-      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize |
-      | Todo1234   | MA0013       | MA0100          | Todo12345       | ERR999           |   END           |
+      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave |
+      | Todo1234   | MA0013       | MA0100          | Todo12345       | ERR999           |
+      | Todo1234   | MA0013       | MA0100          | Todo1234        | ERR999           |
