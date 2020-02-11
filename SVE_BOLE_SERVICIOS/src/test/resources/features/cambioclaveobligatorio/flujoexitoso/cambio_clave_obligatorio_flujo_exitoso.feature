@@ -3,6 +3,7 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
   Background:
     * def correlationId = '32432432'
     * def urlPath = 'http://192.168.106.49:11080/t1-psf-apistore-mua/rest/v1.0/EFLOGIN/security/'
+    * def rutaJson = '../../../jsons/validarusuario/'
 
   @CambioClaveObligatorioExitoso
   Scenario Outline: Autenticacion
@@ -41,7 +42,7 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     * def jsonParametroAutenUsuario =
     """
     {
-     jsonPath: '../../../jsons/validarusuario/ValidarUsuarioPost.json',
+     jsonPath: #(rutaJson+'<archivoJson>'),
      url: #(urlPath),
      path: 'login/business/info',
      sessionIdStartFlow: #(sessionId),
@@ -107,5 +108,6 @@ Feature: Como empresa afiliada en la sve deseo poder hacer el cambio de clave ob
     And def responseInitialize = call read('../../bancoServicios/banco_servicios.feature@initialize') jsonInitialize
     And match responseInitialize.response.header.errorCode == '<errorInitialize>'
     Examples:
-      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize |
-      | Todo1234   | MA0013       | MA0100          | Todo1235        | MA0204           |   END           |
+      | contrasena | errorUsuario | errorContrasena | nuevaContrasena | errorCambioClave | errorInitialize | archivoJson                          |
+      | Todo1234   | MA0013       | MA0100          | Todo1235        | MA0204           | END             | ValidarUsuarioPost.json              |
+      | Todo1234   | MA0013       | MA0100          | Todo1235        | MA0204           | END             | ValidarUsuarioCambioObligatorioClave.json |
