@@ -15,7 +15,7 @@ Feature:
   Scenario: GetParams
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionIdStartFlow)
+    And header SESSIONID = (sessionId)
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     When method GET
@@ -35,7 +35,7 @@ Feature:
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionIdStartFlow)
+    And header SESSIONID = (sessionId)
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     And request jsonRequetsPost
@@ -47,24 +47,77 @@ Feature:
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionIdStartFlow)
+    And header SESSIONID = (sessionId)
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     And request jsonRequetsPost
     When method POST
     Then status 200
 
+  @validacionUsuarioLogin
+  Scenario: ValidarUsuario
+    * def jsonRequetsPost = read((jsonPath))
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    And request jsonRequetsPost
+    When method POST
+    Then status 200
+
+  @autenticarPrimeraClave
+  Scenario: AutenticarPrimeraClave
+    * def jsonRequetsPost = (jsonPath)
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    And request jsonRequetsPost
+    When method POST
+    Then status 418
+
+  @cambioObligatorioClave
+  Scenario: CambioObligatorioClave
+    * def jsonRequetsPost = (jsonPath)
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    And request jsonRequetsPost
+    When method PUT
+    Then status 200
+
+  @cambioObligatorioClaveflujoalterno
+  Scenario: CambioObligatorioClave
+    * def jsonRequetsPost = (jsonPath)
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    And request jsonRequetsPost
+    When method PUT
+    Then status 400
+
   @antiFraude
   Scenario: Autorizar Antifraude
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionIdStartFlow)
+    And header SESSIONID = (sessionId)
     And header CORRELATIONID = (correlationId)
     And header Content-Type = 'application/json'
     And header CHANNEL = '003'
     And request jsonRequetsPost
     When method POST
+    Then status 200
+
+  @initialize
+  Scenario: Initialize
+    Given url (url)
+    And path (path)
+    And header SESSIONID = (sessionId)
+    And header CORRELATIONID = (correlationId)
+    When method GET
     Then status 200
 
   @encryptedNewPassword
