@@ -14,5 +14,8 @@ Feature:
     And header correlationId = correlationId
     When method GET
     Then status 200
+    * def paises = response.data
     And match response.header.errorCode == '0000'
     And match response.header.errorMsg == 'NO ERROR'
+    * def cantidadPaises = paises.length
+    And match cantidadPaises == 231
