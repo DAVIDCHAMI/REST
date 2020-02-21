@@ -81,14 +81,7 @@ Feature: Como empresa afiliada en la sve deseo poder hacer la activacion del tok
     When method post
     Then status 200
     * def responseAntiFrause = response
-    And responseAntiFrause.header.errorCode = 'MA0204'
-#    Given url (urlPath) + 'authentication/initialize'
-#    And header correlationId = correlationId
-#    And header sessionId = getSessionIdStartFlow.response.header.sessionId
-#    When method get
-#    Then status 200
-#    * def responseInitialize = response
-#    And responseInitialize.header.errorCode = 'END'
+
 
     Given url (urlPath) + 'authentication/token/activation'
     And header correlationId = correlationId
