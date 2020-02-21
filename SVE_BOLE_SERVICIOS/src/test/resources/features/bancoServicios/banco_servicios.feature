@@ -15,7 +15,7 @@ Feature:
   Scenario: GetParams
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionId)
+    And header SESSIONID = (sessionIdStartFlow)
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     When method GET
@@ -35,7 +35,7 @@ Feature:
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionId)
+    And header SESSIONID = (sessionIdStartFlow)
     And header CORRELATIONID = (correlationId)
     And header CHANNEL = '003'
     And request jsonRequetsPost
@@ -59,7 +59,7 @@ Feature:
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionId)
+    And header SESSIONID = (sessionIdStartFlow)
     And header CORRELATIONID = (correlationId)
     And request jsonRequetsPost
     When method POST
@@ -70,7 +70,7 @@ Feature:
     * def jsonRequetsPost = (jsonPath)
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionId)
+    And header SESSIONID = (sessionIdStartFlow)
     And header CORRELATIONID = (correlationId)
     And request jsonRequetsPost
     When method POST
@@ -103,7 +103,7 @@ Feature:
     * def jsonRequetsPost = read((jsonPath))
     Given url (url)
     And path (path)
-    And header SESSIONID = (sessionId)
+    And header SESSIONID = (sessionIdStartFlow)
     And header CORRELATIONID = (correlationId)
     And header Content-Type = 'application/json'
     And header CHANNEL = '003'
