@@ -31,10 +31,10 @@ Feature:
     * def segmentoPaises = $.data[<idIteracion>].name
     And match segmentoPaises contains '<pais>'
     * def documentos = $.data[<idIteracion>].documentTypes[*].code
-    And match documentos contains [<idDocumentosPanama>]
+    And match documentos contains [<idDocumentos>]
 
     Examples:
-      | idIteracion | pais        | idDocumentosPanama         |
+      | idIteracion | pais        | idDocumentos               |
       | 0           | PANAMÁ      | "CC", "IEJNRC", "N"        |
       | 1           | PUERTO RICO | "CC", "IEJNRC", "N"        |
       | 2           | COLOMBIA    | "CC", "CE", "P", "N", "CD" |
