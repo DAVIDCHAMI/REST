@@ -8,6 +8,5 @@ import org.junit.runner.RunWith;
 @KarateOptions(
         features = {"src/test/resources/features/token/activar_token.feature"}
 )
-
 public class ActivarToken {
 }
