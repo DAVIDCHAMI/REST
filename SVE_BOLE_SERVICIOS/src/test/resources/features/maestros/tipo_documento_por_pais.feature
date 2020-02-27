@@ -20,3 +20,17 @@ Feature:
     * def datosSegPersonasServicios = response.data
     * def datosSegPersonasEsperado = read('../../jsons/validarmaestros/maestroSegmentoPersonas.json')
     And match response.data == datosSegPersonasEsperado
+
+
+  @segmentoEmpresas
+  Scenario: Consulta tipos de documento por pais para segmento empresas
+    * def path = 'BUSINESS'
+    Given url urlPath + path
+    When method GET
+    * def responseEmpresas = response.header
+    Then status 200
+    And match responseEmpresas.errorCode == '0000'
+    And match responseEmpresas.errorMsg == 'NO ERROR'
+#    * def datosSegPersonasServicios = response.data
+#    * def datosSegPersonasEsperado = read('../../jsons/validarmaestros/maestroSegmentoPersonas.json')
+#    And match response.data == datosSegPersonasEsperado
