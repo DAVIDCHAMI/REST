@@ -22,19 +22,20 @@ Feature:
     And match response.data == datosSegPersonasEsperado
 
   @segmentoEmpresas
-  Scenario: Consulta tipos de documento por pais para segmento Empresas
+  Scenario Outline: Consulta tipos de documento por pais para segmento Empresas
     * def path = 'BUSINESS'
     Given url urlPath + path
     When method GET
     * def responseEmpresas = response.header
     Then retry until responseStatus == 200 && responseEmpresas.errorCode == '0000' && responseEmpresas.errorMsg == 'NO ERROR'
-    * def segmentoPaises = $.data[*].id
-    And match segmentoPaises contains ["PA", "PR", "KY", "CO"]
-    * def documentosPanama = $.data[0].documentTypes[*].code
-    And match documentosPanama contains ["CC", "IEJNRC", "N"]
-    * def documentosPuertoRico = $.data[1].documentTypes[*].code
-    And match documentosPuertoRico contains ["CC", "IEJNRC", "N"]
-    * def documentosColombia = $.data[2].documentTypes[*].code
-    And match documentosColombia contains ["CC", "CE", "P", "N", "CD"]
-    * def documentosCayman = $.data[3].documentTypes[*].code
-    And match documentosCayman contains ["CC", "IEJNRC", "N"]
+    * def segmentoPaises = $.data[<idIteracion>].name
+    And match segmentoPaises contains '<pais>'
+    * def documentos = $.data[<idIteracion>].documentTypes[*].code
+    And match documentos contains [<idDocumentosPanama>]
+
+    Examples:
+      | idIteracion | pais        | idDocumentosPanama         |
+      | 0           | PANAMÁ      | "CC", "IEJNRC", "N"        |
+      | 1           | PUERTO RICO | "CC", "IEJNRC", "N"        |
+      | 2           | COLOMBIA    | "CC", "CE", "P", "N", "CD" |
+      | 3           | CAYMAN      | "CC", "IEJNRC", "N"        |
