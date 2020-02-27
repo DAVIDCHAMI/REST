@@ -1,10 +1,10 @@
-Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada en la aplicacion
+Feature: Como empresa afiliada en la sve deseo poder hacer la autenticacion con token
 
   Background:
     * def correlationId = '32432432'
     * def urlPath = 'http://192.168.106.48:10280/t1-psf-apistore-mua/rest/v1.0/EFLOGIN/security/'
 
-  Scenario: Autenticacion - Flujo exitoso
+  Scenario: Autenticacion con token
     * def jsonParametroStartFlow =
     """
     {
@@ -13,7 +13,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     correlationId: #(correlationId)
     }
     """
-    Given def getSessionIdStartFlow = call read('../../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
+    Given def getSessionIdStartFlow = call read('../bancoServicios/banco_servicios.feature@startFlow') jsonParametroStartFlow
     * def jsonParametroGetParams =
     """
     {
@@ -23,7 +23,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     correlationId: #(correlationId)
     }
     """
-    And def datosGetParams = call read('../../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
+    And def datosGetParams = call read('../bancoServicios/banco_servicios.feature@getParams') jsonParametroGetParams
     * def salt = datosGetParams.response.data.extras[1].value
     * def jsonParametroValidate =
     """
@@ -39,7 +39,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     * def jsonParametroAutenUsuario =
     """
     {
-     jsonPath: '../../../jsons/validarusuario/ValidarUsuarioPost.json',
+     jsonPath: '../../../jsons/token/UsuarioAutenticacionToken.json',
      url: #(urlPath),
      path: 'login/business/info',
      sessionIdStartFlow: #(getSessionIdStartFlow.response.header.sessionId),
@@ -49,7 +49,7 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     Given url (urlPath) + 'login/business/info'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
-    And request read('../../../jsons/validarusuario/ValidarUsuarioPost.json')
+    And request read('../../jsons/token/UsuarioAutenticacionToken.json')
     When method post
     Then status 200
     Given url 'http://192.168.103.61:9280/proxi/CypherCreds.jsp?salt='+salt+'&password=Todo123@'
@@ -82,6 +82,17 @@ Feature: Como empresa afiliada en la sve deseo poder cerrar la sesion iniciada e
     Then status 200
     * def responseAntiFrause = response
     And responseAntiFrause.header.errorCode = 'MA0204'
+
+
+    Given url (urlPath) + 'authentication/token'
+    And header correlationId = correlationId
+    And header sessionId = getSessionIdStartFlow.response.header.sessionId
+    And request read('../../jsons/token/AutenticarToken.json')
+    When method post
+    Then status 200
+    * def responseTokenActivacion = response
+    And responseTokenActivacion.header.errorCode = 'MA0001'
+
     Given url (urlPath) + 'authentication/initialize'
     And header correlationId = correlationId
     And header sessionId = getSessionIdStartFlow.response.header.sessionId
